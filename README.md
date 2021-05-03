@@ -1,5 +1,6 @@
 # HTC_Condor_Resizing
-Objetivos Este projeto tem como objetivo, instalar e configurar um cluster
+Objetivos: 
+Este projeto tem como objetivo, instalar e configurar um cluster
 de HTCondor com pelo menos 3 nós e utilizar o mesmo na resolução de uma
 tarefa de processamento.
 Descrição do projeto Pretende-se implementar um cluster HTCondor 1 para
