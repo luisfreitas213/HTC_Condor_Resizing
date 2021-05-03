@@ -1,0 +1,69 @@
+Vagrant - windows - ubuntu WSL
+
+instalar virtualbox para o windows
+instalar ubuntu (wsl)
+
+############instalar o Ansible
+su
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible
+
+
+#############Remover se existir e instalar o Vagrant do ubuntu
+sudo apt-get autoremove vagrant
+sudo apt install vagrant
+vagrant --v
+
+
+#############instalar a box do vagrant 
+export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
+export PATH="$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0"
+export PATH="$PATH:/mnt/c/WINDOWS/system32"
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+
+
+#############criar pasta vagrant e vagrantfile
+cd /mnt/c/
+mkdir vagrant
+cd vagrant
+##vagrant init ubuntu/bionic64
+
+#############PASSAR O VAGRANT FILE PARA A PASTA vagrant e executar########
+export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/vagrant"
+vagrant up
+
+vagrant provision
+
+Nota: 
+sempre que se ligar o ubuntu é preciso correr estes processos: 
+su
+export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
+export PATH="$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0"
+export PATH="$PATH:/mnt/c/WINDOWS/system32"
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/vagrant"
+
+###################################################################################################################
+
+Condor
+
+Ligar as Máquinas - vagrant up 
+desligar as máquinas - vagrant halt 
+Aceder as máquinas - vagrant ssh condor-1/2/3
+
+No primeiro acesso é preciso cirar a password do su em cada máquina
+
+
+criar um execute
+criar um job.submit
+
+condor_submit job.submit
+condor_q
+condor_q -nobatch
+
+
+Aprender condor:
+https://agenda.hep.wisc.edu/event/1201/other-view

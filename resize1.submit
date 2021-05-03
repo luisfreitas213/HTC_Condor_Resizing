@@ -1,0 +1,16 @@
+executable = resize1.sh
+arguments = shared/video.mp4 $(Procid)
+
+transfer_input_files = shared
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+log = log/resize1$(Procid).log
+output = out/resize1$(Procid).out
+error = error/resize1$(Procid).error
+
+#request_cpus = 1
+#request_memory = 20MB
+#request_disk = 20MB
+
+queue 3

@@ -1,0 +1,44 @@
+#### escolher password para o sudo
+sudo passwd root
+
+####instalar o git na vm condor-1
+sudo dnf install git
+git config --global user.name "Luís Freitas"
+git config --global user.email "luispedronovaisfreitas@outlook.pt"
+
+#### Pasta partilhada
+Partilhar uma pasta para o desenvolvimento entre as máquinas virtuais
+dar acesso a partir de :
+sudo usermod -aG vboxsf vagrant
+sudo chown -R vagrant:users /media/sf_project_hpc/
+sudo reboot now  
+
+#### ffmpeg install - nas 3 máquinas
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
+sudo yum install http://rpmfind.net/linux/epel/7/x86_64/Packages/s/SDL2-2.0.10-1.el7.x86_64.rpm
+sudo yum install ffmpeg ffmpeg-devel
+
+### install youtube dl
+sudo yum install youtube-dl
+curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
+chmod a+rx /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+###Download video
+sudo youtube-dl --list-formats https://www.youtube.com/watch?v=zak-e81fcQ0
+sudo youtube-dl -f 137 https://www.youtube.com/watch?v=zak-e81fcQ0
+mv 'Legendary FIFA World Cup Goals-zak-e81fcQ0.mp4' video.mp4
+
+ffmpeg -i video.mp4
+
+ffmpeg -i video.mp4 2>&1 | grep "Duration"| cut -d ' ' -f 4 | sed s/,// | sed 's@\..*@@g' | awk '{ split($1, A, ":"); split(A[3], B, "."); print 3600*A[1] + 60*A[2] + B[1] }'
+
+ffmpeg -i video.mp4 -ss 0 -t 176 first.mp4 
+
+ffmpeg -i video.mp4 -ss 177 -t 176 second.mp4
+
+ffmpeg -i first.mp4 -s hd720 first_720p.mp4 
+
+ffmpeg -i second.mp4 -s hd720 second_720p.mp4 
+

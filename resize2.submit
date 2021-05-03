@@ -1,0 +1,16 @@
+executable = resize2.sh
+arguments = p.txt 
+
+transfer_input_files = shared2/
+should_transfer_files = IF_NEEDED
+when_to_transfer_output = ON_EXIT
+
+log = log/resize2.log
+output = out/resize2.out
+error = error/resize2.error
+
+#request_cpus = 1
+#request_memory = 20MB
+#request_disk = 20MB
+
+queue 1

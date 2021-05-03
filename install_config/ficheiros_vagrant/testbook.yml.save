@@ -1,0 +1,6 @@
+ loca- name: testing ansible
+ hosts: 
+
+ tasks:
+-name: echo a message
+ debug: msg=”this is working"

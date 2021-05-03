@@ -1,0 +1,8 @@
+JOB A1 resize1.submit
+SCRIPT POST A1 organize1.sh
+RETRY A1 5
+JOB A2 resize2.submit
+SCRIPT POST A2 organize2.sh
+RETRY A2 5
+PARENT A1 CHILD A2
+
